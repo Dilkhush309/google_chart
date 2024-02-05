@@ -1,16 +1,102 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charts</title>
+    <title>Two Google Column Charts</title>
+    <!-- Load the Google Charts API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawCharts);
+
+        // Callback that creates and populates data tables, instantiates charts, passes in the data and draws them.
+        function drawCharts() {
+            // Create the data table for Chart 1.
+            var data1 = new google.visualization.DataTable();
+            data1.addColumn('string', '時刻');
+            data1.addColumn('number', '入出庫');
+            data1.addRows([
+                ['A', 20],
+                ['B', 40],
+                ['C', 60],
+                ['D', 80]
+            ]);
+
+            // Set options for Chart 1
+            var options1 = {
+                title: 'Chart 1',
+                hAxis: {
+                    title: '時刻',
+                    viewWindow: { min: 0 }
+                },
+                vAxis: {
+                    title: '入出庫'
+                },
+                colors: [ '#7F7F7F'],
+            };
+
+            // Create the chart for Chart 1.
+            var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+            chart1.draw(data1, options1);
+
+            // Create the data table for Chart 2.
+            var data2 = new google.visualization.DataTable();
+            data2.addColumn('string', '時刻');
+            data2.addColumn('number', '入出庫');
+            data2.addRows([
+            ['0189', 4],
+            ['0270', 3],
+            ['0361', 0],
+            ['1452', 0],
+            ['1543', 0],
+            ['2634', 0],
+            ['2725', 0],
+            ['3816', 9],
+            ['3907', 18],
+            ['4098', 20],
+            ['4189', 16],
+            ['4270', 20],
+            ['5361', 26],
+            ['5452', 29],
+            ['6543', 33],
+            ['6634', 35],
+            ['6725', 41],
+            ['7816', 33],
+            ['7907', 32],
+            ['8098', 21],
+            ['8189', 15],
+            ['8270', 8],
+            ['9361', 5],
+            ['9452', 11],
+            ]);
+
+            // Set options for Chart 2
+            var options2 = {
+                title: 'Chart 2',
+                hAxis: {
+                    title: 'PIN CODE',
+                    viewWindow: { min: 0 }
+                },
+                vAxis: {
+                    title: 'Values'
+                }
+            };
+
+            // Create the chart for Chart 2.
+            var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+            chart2.draw(data2, options2);
+        }
+    </script>
 </head>
 <body>
-    <h1>動作回数イメージ</h1>
-    <div id="column_chart"></div>
-     <div id="chart_div"></div>
+    <!-- Create a div to hold the first chart -->
+    <div id="chart_div1" style="width: 50%; height: 400px; float: left;"></div>
+    
+    <!-- Create a div to hold the second chart -->
+    <div id="chart_div2" style="width: 50%; height: 400px; float: left;"></div>
 </body>
 </html>
-
