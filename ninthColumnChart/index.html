@@ -37,6 +37,8 @@
                     title: '入出庫'
                 },
                 colors: [ '#7F7F7F'],
+                width:'100%',
+                height:500,
             };
 
             // Create the chart for Chart 1.
@@ -83,20 +85,41 @@
                 },
                 vAxis: {
                     title: 'Values'
-                }
+                },
+                width:'100%',
+                height:500,
             };
 
             // Create the chart for Chart 2.
             var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
             chart2.draw(data2, options2);
+
+             // Redraw charts when the window is resized
+             window.addEventListener('resize', function(){
+                chart1.draw(data1, options1);
+                chart2.draw(data2, options2);
+            });
         }
     </script>
+    <style>
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            #chart_div1, #chart_div2 {
+                width: 100%;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            #chart_div1, #chart_div2 {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Create a div to hold the first chart -->
-    <div id="chart_div1" style="width: 50%; height: 400px; float: left;"></div>
+   <!-- Create a div to hold the first chart -->
+    <div id="chart_div1" style="width: 100%; max-width: 50%; height: 400px; float: left;"></div>
     
     <!-- Create a div to hold the second chart -->
-    <div id="chart_div2" style="width: 50%; height: 400px; float: left;"></div>
+    <div id="chart_div2" style="width: 100%; max-width: 50%; height: 400px; float: left;"></div>
 </body>
 </html>
